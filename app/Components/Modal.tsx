@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import PaymentCard from './PaymentCard';
+import Link from 'next/link';
 
 interface ModalProps {
   isOpen: boolean;
@@ -8,6 +9,8 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose,price}) => {
+
+  const [paymentDone,setPaymentDone] = useState(false)
 
 
 
@@ -20,13 +23,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose,price}) => {
        
         {/* <h2 className="text-xl font-bold mb-4">Confirm the order: ${price}</h2> */}
         <div className='w-full flex justify-center items-center content-center'>
-          <PaymentCard onClose={onClose} price={price}/>
-        {/* <button className="bg-violet-800 text-white font-semibold py-3 px-16 rounded-xl h-full"
+          {!paymentDone?<PaymentCard onClose={onClose} price={price} setPaymentDone={setPaymentDone}/>:<div className='bg-white flex flex-col w-full p-20 rounded-md text-green-400'>
+          Payment Successful
+          <Link className='text-blue-300' href={'/'}>Buy more products</Link>
+          </div>
+}
+        
           
-          >Confirm</button>
-           <button className="bg-red-600 text-white font-semibold py-3 px-16 rounded-xl h-full"
-          onClick={onClose}
-          >Cancel</button> */}
         </div>
       </div>
     </div>

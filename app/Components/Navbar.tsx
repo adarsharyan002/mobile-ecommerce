@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react';
+import { FaAlignJustify } from "react-icons/fa6";
 
 interface NavbarProps {
   // Add any necessary props here
@@ -24,10 +25,9 @@ const Navbar: React.FC<NavbarProps> = () => {
               >
                 {/* ... SVG path ... */}
               </svg>
-              <span className="mx-1 text-sm">NY</span>
             </div>
-            <div className="w-full text-gray-700 md:text-center text-2xl font-semibold">
-              Mobile Phones
+            <div className="w-full flex justify-center content-center text-gray-700 md:text-center text-2xl font-semibold">
+              Mobile 
             </div>
             <div className="flex items-center justify-end w-full">
               <button
@@ -51,14 +51,11 @@ const Navbar: React.FC<NavbarProps> = () => {
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   type="button"
-                  className="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500"
+                  className="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500 text-2xl"
                   aria-label="toggle menu"
                 >
-                  <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
-
-                    {/* ... SVG path ... */}
-                  </svg>
-                  Open
+                  
+                  <FaAlignJustify/>
                 </button>
               </div>
             </div>

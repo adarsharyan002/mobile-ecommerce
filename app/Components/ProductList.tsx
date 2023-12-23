@@ -1,26 +1,47 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { products } from '../data/ProductData';
+// import { products } from '../data/ProductData';
+import { context } from "../context/ContextProvider";
+import { useContext } from 'react';
 
 interface Product {
-  id: string;
+  _id: string;
   name: string;
   price: number;
-  imgurl: string;
+  // imgurl: string;
   warranty: string;
   // Add other properties if available
 }
 
 const ProductGrid = () => {
+
+  const {data} = useContext(context);
+  console.log(data)
+  
+
+  
+  
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [products,setProducts]=useState<Product[]|null>(null)
+ 
+  const [filteredProducts, setFilteredProducts] = useState<Product[] | undefined  | null>(products);
+ 
+  
+  useEffect(() => {
+    setProducts(data); // Set products data initially
+    setFilteredProducts(data); // Set filteredProducts initially
+  
+  }, [data]);
+  
+  
+  
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const term = event.target.value.toLowerCase();
     setSearchTerm(term);
-    const filtered = products.filter((product) =>
+    const filtered:Product[] | null | undefined = products?.filter((product:Product) =>
       product.name.toLowerCase().includes(term)
     );
     setFilteredProducts(filtered);
@@ -28,7 +49,7 @@ const ProductGrid = () => {
 
   };
 
-  console.log(filteredProducts)
+  
 
   return (
     <div className="container mx-auto px-6">
@@ -44,11 +65,11 @@ const ProductGrid = () => {
         </div>
       </div>
       <div className="flex flex-wrap justify-center mt-14">
-        {filteredProducts?.map((item, index) => (
-           <Link key={index}  href={`/${item.id}`} >
+        {filteredProducts?.map((item:Product, index:number) => (
+           <Link key={index}  href={`/${item._id}`} >
            <div className="mx-2 w-72 lg:mb-0 mb-8 shadow-md hover:shadow-xl">
            <div>
-               <img src={item.imgurl} className="w-full h-44" />
+               <img src='https://cdn.tuk.dev/assets/templates/classified/Bitmap (1).png' className="w-full h-44" />
            </div>
            <div className="bg-white">
                <div className="flex items-center justify-between px-4 pt-4">

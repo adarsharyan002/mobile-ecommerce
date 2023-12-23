@@ -4,9 +4,10 @@ interface PaymentCardProps {
   // Define props if needed
   price:number
   onClose: () => void;
+  setPaymentDone:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const PaymentCard: React.FC<PaymentCardProps> = ({price,onClose}) => {
+const PaymentCard: React.FC<PaymentCardProps> = ({price,onClose,setPaymentDone}) => {
   return (
     <div className=" h-[40vh]  flex items-center justify-center px-5 pb-10 pt-16">
       <div className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700" style={{ maxWidth: '600px' }}>
@@ -86,9 +87,12 @@ const PaymentCard: React.FC<PaymentCardProps> = ({price,onClose}) => {
           </div>
         </div>
         <div>
-          <button onClick={onClose} className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+          <button onClick={()=>setPaymentDone(true)} className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
             <i className="mdi mdi-lock-outline mr-1"></i> PAY NOW
           </button>
+          <button className="block w-full max-w-xs mx-auto bg-red-500 hover:bg-red-700 focus:bg-red-700 text-white rounded-lg px-3 py-3 font-semibold mt-3"
+          onClick={onClose}
+          >Cancel</button>
         </div>
       </div>
     </div>
