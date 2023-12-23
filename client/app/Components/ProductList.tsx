@@ -18,7 +18,7 @@ interface Product {
 const ProductGrid = () => {
 
   const {data} = useContext(context);
-  console.log(data)
+ 
   
 
   

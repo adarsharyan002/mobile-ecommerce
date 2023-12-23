@@ -32,7 +32,7 @@ const FetchDataProvider = ({ children }: FetchDataProviderProps) => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/v1/products/posts");
+      const res = await axios.get("https://mobile-ecommerce-012n.onrender.com/api/v1/products/posts");
       setData(res.data);
     } catch (error) {
       console.log(error);
@@ -41,7 +41,7 @@ const FetchDataProvider = ({ children }: FetchDataProviderProps) => {
 
   const fetchSingleProduct = async (id: string) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/v1/products/posts/${id}`);
+      const res = await axios.get(`https://mobile-ecommerce-012n.onrender.com/api/v1/products/posts/${id}`);
       setSingleProduct(res.data);
     } catch (error) {
       console.log(error);

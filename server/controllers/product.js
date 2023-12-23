@@ -10,7 +10,7 @@ const getAllProducts = async (req, res) => {
   };
 
   const getAllProductsById = async (req, res) => {
-    console.log(req.params)
+    
     try {
       const product = await Product.findById(req.params.id);
       if (product === null) {
